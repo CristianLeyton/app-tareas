@@ -1,0 +1,15 @@
+.menu-nav {
+    transform: translateY(-50%);
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.active-nav {
+    transform: translateY(0%);
+    transition: 0.3s ease-in all;
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+}
+
