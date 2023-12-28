@@ -13,3 +13,10 @@
     opacity: 1;
 }
 
+/* Achica el modal para la vista en celular */
+@media (max-width: 640px) {
+    .modal-small {
+        min-width: 90vw;
+        margin: auto;
+    }
+}
