@@ -13,7 +13,13 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('inicio') }}" :active="request()->routeIs('inicio')">
-                        {{ "Inicio" }}
+                        {{ "Tareas" }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ url('completadas') }}" :active="request()->routeIs('completadas')">
+                        {{ "Completadas" }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ url('etiquetas') }}" :active="request()->routeIs('etiquetas')">
+                        {{ "Etiquetas" }}
                     </x-nav-link>
                 </div>
             </div>
@@ -140,7 +146,13 @@
     <div :class="{'active-nav': open, 'collapse': ! open}" class="sm:collapse menu-nav">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('inicio') }}" :active="request()->routeIs('inicio')">
-                {{ "Inicio" }}
+                {{ "Tareas" }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ url('completadas') }}" :active="request()->routeIs('completadas')">
+                {{ "Completadas" }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ url('etiquetas') }}" :active="request()->routeIs('etiquetas')">
+                {{ "Etiquetas" }}
             </x-responsive-nav-link>
         </div>
 
