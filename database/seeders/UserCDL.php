@@ -18,6 +18,7 @@ class UserCDL extends Seeder
             'name' => 'Cristian Leyton',
             'email' => 'clippyt@gmail.com',
             'password' => Hash::make('Leyton520'),
+            'profile_photo_path' => 'profile-photos/YhfNqi7moVGcBqrIzKDhq50sTttaDN6evD25dcRK.jpg'
         ]);
     }
 }
