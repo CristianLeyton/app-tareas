@@ -17,6 +17,7 @@
         <!-- Styles -->
         @livewireStyles
         <link rel="stylesheet" href="{{ asset('styles/styles.css') }}">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     </head>
     <body class="font-sans antialiased">
         <x-banner />

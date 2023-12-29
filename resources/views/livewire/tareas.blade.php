@@ -37,6 +37,7 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($tasks as $task)
                 <tr class="bg-white border-b  hover:bg-gray-50  ">
                     <td class="w-4 p-4">
                         <div class="flex items-center justify-center">
@@ -45,10 +46,13 @@
                         </div>
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                        Tarea de ejemplo
+                        {{$task->name}}
                     </th>
                     <td class="px-6 py-4 hidden sm:inline-block" >
-                        Casa, Importante
+                        @foreach ($task->tags as $tag)
+                        <span class="" style="color: #{{$tag->color}}"><i class='bx bxs-bookmark-star' style="transform: scale(1.1)"></i>{{Str::ucfirst($tag->name)}}</span>
+                        @endforeach
+                        {{-- {{ $task->tags()->pluck('name')->join(', ')}} --}}
                     </td>
                     <td class="text-center" >
                         <x-secondary-button wire:click="$set('detailOpen',true)">
@@ -62,7 +66,7 @@
                         </x-danger-button>
                     </td>
                 </tr>
-                
+                @endforeach
             </tbody>
         </table>
         <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
@@ -83,17 +87,20 @@
     
     {{-- MODAL NUEVA TAREA --}}
 
-    <form wire:submit="" >
+    <form wire:submit="saveTask" >
         <x-dialog-modal wire:model="open">
             <x-slot name="title">
                 Nueva tarea:
             </x-slot>  
             <x-slot name="content">
+    
+                
+
                     <div class="mb-4">
                         <x-label for="">
                             Nombre:
                         </x-label>
-                        <x-input placeholder="Ingrese el nombre de la tarea" class="w-full" wire:model.live=""/>
+                        <x-input placeholder="Ingrese el nombre de la tarea" class="w-full" wire:model.live="taskName"/>
                         <x-input-error for=""/>
                     </div>
         
@@ -101,19 +108,25 @@
                         <x-label for="">
                             Detalles:
                         </x-label>
-                        <x-textarea placeholder="De ser necesario, puede agregar detalles... Si no, deje el espacio en blanco" class="w-full" wire:model.live=""></x-textarea>
+                        <x-textarea placeholder="De ser necesario, puede agregar detalles... Si no, deje el espacio en blanco" class="w-full" wire:model.live="taskContent"></x-textarea>
                         <x-input-error for=""/>
                     </div>
         
                     <div class="mb-4">
                         <x-label>
-                            Repetir cada:
+                            Repetir:
                         </x-label>
-                        <x-select class="w-full" wire:model.live="">
-                            <option value="" disabled>
+                        <x-select class="w-full" wire:model.live="repeat_id">
+                            <option value="{{null}}">
                                 No repetir
                             </option>
-                    
+                            
+                            @foreach ($repeats as $repeat)
+                            <option value="{{$repeat->id}}">
+                                {{ucfirst($repeat->name)}}
+                            </option>
+                            @endforeach
+
                         </x-select>
                         <x-input-error for=""/>
                     </div>
@@ -125,10 +138,14 @@
                         <ul class="w-full flex justify-between">
                             
                             <li>
-                                <label>
-                                <x-checkbox wire:model.live="" value=""/>
-                                    tag->name
-                                </label>
+                                @foreach ($tags as $tag)
+                                <label class="">
+                                <x-checkbox wire:model.live="taskTags" value="{{$tag->id}}"/>
+                                    
+                                    <span  style="color: #{{$tag->color}}">{{Str::ucfirst($tag->name)}}<i class='bx bxs-bookmark-star' style="transform: scale(1.1)"></i></span>
+                                    
+                                </label> 
+                                @endforeach
                             </li>
                             
                         </ul>
@@ -140,9 +157,9 @@
                     <x-secondary-button wire:click="$set('open',false)">
                         Cancelar
                     </x-secondary-button>
-                    <x-primary-button>
+                    <x-button>
                         Guardar
-                    </x-primary-button>
+                    </x-button>
                 </div>
             </x-slot>          
         </x-dialog-modal>
@@ -215,9 +232,14 @@
         </x-dialog-modal>
     </form>
 
+    {{-- MODAL DETALLES --}}
+
     <x-dialog-modal  wire:model="detailOpen">
         <x-slot name="title">
-            Detalles de la tarea:
+            <span class="flex justify-between">
+                <p>Detalles de la tarea:</p>
+                <p>Fecha de creación:</p>
+            </span>
         </x-slot>  
         <x-slot name="content">
             <div class="mb-4">
@@ -273,6 +295,8 @@
             </div>
         </x-slot>
     </x-dialog-modal>
+
+    {{-- MODAL ELIMINAR --}}
 
     <x-confirmation-modal  wire:model="destroyOpen">
         <x-slot name="title">
