@@ -113,7 +113,7 @@ class Tareas extends Component
     //Renderiza la vista
     public function render()
     {
-        $allTasks = Task::where('user_id', $this->taskCreate->user_id)->where('completed', false)->paginate(10);
+        $allTasks = Task::where('user_id', $this->taskCreate->user_id)->where('completed', true)->paginate(10);
 
         //Ordena las tareas por fecha de creacion
         if ($this->ordenar == 'desc') {
