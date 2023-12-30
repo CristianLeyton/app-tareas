@@ -8,6 +8,7 @@ use App\Livewire\Forms\TaskEditForm;
 use App\Models\Repeat;
 use App\Models\Tag;
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -83,9 +84,11 @@ class Tareas extends Component
     //Cambia el estado de el atributo "completed" de la tarea
     public function completedTask($taskId) {
         $task = Task::find($taskId);
+        $date =  Carbon::now();
         $completed = !$task->completed;
         $task->update([
-            'completed' => $completed
+            'completed' => $completed,
+            'completed_at' => $date
         ]);
         $this->reloadTasks();
     }
