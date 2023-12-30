@@ -14,6 +14,11 @@ class RepeatsTableSeeder extends Seeder
     public function run(): void
     {
         Repeat::create([
+            'name' => 'no repetir',
+            'days' => 0
+        ]);
+
+        Repeat::create([
             'name' => 'diariamente',
             'days' => 1
         ]);
