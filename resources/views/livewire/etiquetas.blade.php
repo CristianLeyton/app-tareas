@@ -76,7 +76,7 @@
 
     <x-confirmation-modal wire:model="destroyOpen">
         <x-slot name="title">
-            <p class="text-red-600"> ¿Eliminar tarea? </p>
+            <p class="text-red-600"> ¿Eliminar etiqueta? </p>
         </x-slot>
         <x-slot name="content">
             ¿Estás seguro? ¡Esta acción no se puede revertir!
