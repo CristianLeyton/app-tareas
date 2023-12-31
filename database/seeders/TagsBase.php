@@ -16,11 +16,11 @@ class TagsBase extends Seeder
     {
         Tag::create([
         'name' => 'importante',
-        'color' => 'DC2626'
+        'color' => '#DC2626'
         ]);
         Tag::create([
         'name' => 'opcional',
-        'color' => '4F46E5'
+        'color' => '#4F46E5'
         ]);
     }
 }

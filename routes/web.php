@@ -27,4 +27,12 @@ Route::middleware([
     Route::get('/inicio', function () {
         return view('inicio');
     })->name('inicio');
+
+    Route::get('/completadas', function () {
+        return view('completadas');
+    })->name('completadas');
+
+    Route::get('/etiquetas', function () {
+        return view('etiquetas');
+    })->name('etiquetas');
 });

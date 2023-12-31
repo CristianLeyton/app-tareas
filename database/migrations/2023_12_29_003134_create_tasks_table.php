@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('content')->nullable();
             $table->boolean('completed')->default(false);
-            $table->date("completed_at")->nullable();
+            $table->dateTime("completed_at")->nullable();
 
             $table->timestamps();
         });

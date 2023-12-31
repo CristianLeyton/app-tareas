@@ -44,7 +44,7 @@
                             @foreach ($tags as $tag)
                             <label class="">
                             <x-checkbox wire:model="taskEdit.taskTags" value="{{$tag->id}}"/>
-                                <span class="mr-2" style="color: #{{$tag->color}}">{{Str::ucfirst($tag->name)}}<i class='bx bxs-bookmark-star' style="transform: scale(1.1)"></i></span>
+                                <span class="mr-2" style="color: {{$tag->color}}">{{Str::ucfirst($tag->name)}}<i class='bx bxs-bookmark-star' style="transform: scale(1.1)"></i></span>
                             </label> 
                             @endforeach
                         </li>
