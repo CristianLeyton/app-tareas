@@ -79,6 +79,7 @@
             <p class="text-red-600"> ¿Eliminar etiqueta? </p>
         </x-slot>
         <x-slot name="content">
+            <p>La etiqueta se quitará de todas las tareas que la tengan asociada.</p>
             ¿Estás seguro? ¡Esta acción no se puede revertir!
         </x-slot>
 
