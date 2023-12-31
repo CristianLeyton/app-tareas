@@ -1,7 +1,7 @@
 <div>
-    <x-primary-button class="mb-3 border-none flex gap-2" title="Crear nueva etiqueta"
+    <x-primary-button class="mb-2 border-none flex gap-2" title="Crear nueva etiqueta"
         wire:click="$set('tagCreate.open',true)">
-        <p class="" style="white-space: nowrap;">Nueva etiqueta</p><box-icon type="solid" name="bookmark-plus"
+        <p class="" style="padding: 3px 0; white-space: nowrap;">Nueva etiqueta</p><box-icon type="solid" name="bookmark-plus"
             color="white" size="xs" style="transform: scale(1.4)"></box-icon>
     </x-primary-button>
 
@@ -30,33 +30,32 @@
                         </th>
 
                         <td class="px-6 py-4 ">
-                            <span class="" style="color: {{ $tag->color }}"><i class='bx bxs-bookmark-star' style="transform: scale(1.1)"></i>{{ Str::ucfirst($tag->color) }}</span>
+                            <span class="" style="color: {{ $tag->color }}"><i class='bx bxs-bookmark-star'
+                                    style="transform: scale(1.1)"></i>{{ Str::ucfirst($tag->color) }}</span>
                         </td>
 
                         <td class="px-6 py-4 text-center">
-                            
-                            @if($tag->id == 1 || $tag->id == 2)
 
-                            <x-button title="Editar" class="opacity-50" style="pointer-events: none;">
-                                <box-icon type="solid" name="edit" color="white" size="xs"
-                                    style="transform: scale(1.4)"></box-icon>
-                            </x-button>
+                            @if ($tag->id == 1 || $tag->id == 2)
+                                <x-button title="Editar" class="opacity-50" style="pointer-events: none;">
+                                    <box-icon type="solid" name="edit" color="white" size="xs"
+                                        style="transform: scale(1.4)"></box-icon>
+                                </x-button>
 
-                            <x-danger-button title="Eliminar" class="opacity-50" style="pointer-events: none;">
-                                <box-icon type="solid" name="trash" color="white" size="xs"
-                                    style="transform: scale(1.4)"></box-icon>
-                            </x-danger-button>
-
+                                <x-danger-button title="Eliminar" class="opacity-50" style="pointer-events: none;">
+                                    <box-icon type="solid" name="trash" color="white" size="xs"
+                                        style="transform: scale(1.4)"></box-icon>
+                                </x-danger-button>
                             @else
-                            <x-button title="Editar" wire:click="editTask({{ $tag->id }})" >
-                                <box-icon type="solid" name="edit" color="white" size="xs"
-                                    style="transform: scale(1.4)"></box-icon>
-                            </x-button>
+                                <x-button title="Editar" wire:click="editTag({{ $tag->id }})">
+                                    <box-icon type="solid" name="edit" color="white" size="xs"
+                                        style="transform: scale(1.4)"></box-icon>
+                                </x-button>
 
-                            <x-danger-button title="Eliminar" wire:click="confirmDestroy({{ $tag->id }})" >
-                                <box-icon type="solid" name="trash" color="white" size="xs"
-                                    style="transform: scale(1.4)"></box-icon>
-                            </x-danger-button>
+                                <x-danger-button title="Eliminar" wire:click="confirmDestroy({{ $tag->id }})">
+                                    <box-icon type="solid" name="trash" color="white" size="xs"
+                                        style="transform: scale(1.4)"></box-icon>
+                                </x-danger-button>
                             @endif
                         </td>
                     </tr>
@@ -70,5 +69,25 @@
     </div>
 
     @include('..modals.newTag')
+
+    @include('..modals.editTag')
+
+    {{-- MODAL ELIMINAR --}}
+
+    <x-confirmation-modal wire:model="destroyOpen">
+        <x-slot name="title">
+            <p class="text-red-600"> ¿Eliminar tarea? </p>
+        </x-slot>
+        <x-slot name="content">
+            ¿Estás seguro? ¡Esta acción no se puede revertir!
+        </x-slot>
+
+        <x-slot name="footer">
+            <div class="flex gap-3">
+                <x-danger-button wire:click="destroyTag"> Eliminar </x-danger-button>
+                <x-secondary-button wire:click="$set('destroyOpen',false)">Cancelar</x-secondary-button>
+            </div>
+        </x-slot>
+    </x-confirmation-modal>
 
 </div>

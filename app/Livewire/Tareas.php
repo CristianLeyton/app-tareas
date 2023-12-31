@@ -45,7 +45,10 @@ class Tareas extends Component
     {
         $this->taskCreate->user_id = Auth::id(); //Cada tarea que cree este usuario se va a guardar con su ID
         $this->repeats = Repeat::all(); //Trae todos los datos de la tabla 
-        $this->tags = Tag::all();
+        $this->tags = Tag::where(function ($query) {
+            $query->where('user_id', $this->taskCreate->user_id)
+                ->orWhereNull('user_id');
+        })->orderBy('name')->get();
     }
 
     //Guarda una tarea en la BD

@@ -2,9 +2,9 @@
     {{-- Header --}}
     <div class="flex justify-between flex-wrap sm:flex-nowrap gap-3">
         
-        <x-primary-button class="flex items-center gap-2" title="Crear nueva tarea" wire:click="$set('taskCreate.open',true)"><p class="" style="white-space: nowrap;">Nueva tarea</p><box-icon type="solid" name="plus-square" color="white" size="xs" style="transform: scale(1.4)"></box-icon></x-primary-button>
+        <x-primary-button class="flex items-center gap-2" title="Crear nueva tarea" wire:click="$set('taskCreate.open',true)"><p class="" style="padding: 2px 0; white-space: nowrap;">Nueva tarea</p><box-icon type="solid" name="plus-square" color="white" size="xs" style="transform: scale(1.4)"></box-icon></x-primary-button>
         
-        <x-danger-button class="flex items-center gap-2" title="Eliminar tareas completadas" wire:click="$set('destroyAllOpen',true)"><p class="" style="white-space: nowrap;">Eliminar todas</p><box-icon type="solid" name="trash" color="white" size="xs" style="transform: scale(1.4)"></box-icon></x-danger-button>
+        <x-danger-button class="flex items-center gap-2" title="Eliminar tareas completadas" wire:click="$set('destroyAllOpen',true)"><p class="" style="padding: 2px 0; white-space: nowrap;">Eliminar todas</p><box-icon type="solid" name="trash" color="white" size="xs" style="transform: scale(1.4)"></box-icon></x-danger-button>
 
 
         <div class="flex gap-3 justify-between sm:justify-end w-full">

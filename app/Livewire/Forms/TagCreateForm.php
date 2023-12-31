@@ -27,6 +27,6 @@ class TagCreateForm extends Form
             'name' => $this->tagName,
             'color' => $this->tagColor
         ]);
-        $this->reset();
+        $this->reset('tagName','tagColor','open');
     }
 }

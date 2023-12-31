@@ -4,7 +4,7 @@
 
         <x-primary-button class="border-none flex gap-2" title="Crear nueva tarea"
             wire:click="$set('taskCreate.open',true)">
-            <p class="" style="white-space: nowrap;">Nueva tarea</p><box-icon type="solid" name="plus-square"
+            <p class="" style="padding: 3px 0; white-space: nowrap;">Nueva tarea</p><box-icon type="solid" name="plus-square"
                 color="white" size="xs" style="transform: scale(1.4)"></box-icon>
         </x-primary-button>
 
