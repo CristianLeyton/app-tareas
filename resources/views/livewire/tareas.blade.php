@@ -9,7 +9,7 @@
         </x-primary-button>
 
         <div class="flex gap-3 justify-between sm:justify-end w-full">
-            <div class="flex items-end">
+            <div class="flex max-w-28 sm:max-w-none">
                 <x-label for="etiquetas">Etiquetas:
                     <x-select name="etiquetas" wire:model.live="tag" class="text-sm">
                         <option value="">Todas</option>
@@ -17,9 +17,10 @@
                             <option value="{{ $tag->id }}">{{ Str::ucfirst($tag->name) }}</option>
                         @endforeach
                     </x-select>
-            </div>
-            <div class="flex">
                 </x-label>
+            </div>
+            <div class="flex justify-end max-w-28 sm:max-w-none">
+                
                 <x-label for="fecha">Mostrar primero:
                     <x-select name="fecha" wire:change="$set('tag','')" wire:model="ordenar" id=""
                         class="text-sm">
@@ -36,9 +37,10 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                 <tr>
                     <th scope="col" class="p-4">
-                        Completada
+                        <span class="hidden sm:block">Completada</span>
+                        <span class="block sm:hidden"><i class=' text-indigo-600 bx bxs-check-square border border-indigo-600 rounded' style="font-size:24px;"></i></span>
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-2 sm:px-6 py-3">
                         Nombre
                     </th>
                     <th scope="col" class="px-6 py-3 hidden sm:inline-block">
@@ -71,16 +73,17 @@
                                         style="font-size: 22px"></i></button>
                             </div>
                         </td>
-                        <th id="nameTask" scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                            {{ $task->name }}
+                        <th id="nameTask"  scope="row"
+                            class=" px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                            <span class="max-w-36 inline-block sm:max-w-md truncate" wire:click="detailTask({{ $task->id }})"">{{ $task->name }}</span>
                         </th>
-                        <td class="px-6 py-4 hidden sm:inline-block">
+                        <td class="nowrap px-6 py-4 hidden sm:inline-block">
+
                             @foreach ($task->tags as $tag)
                                 <span class="" style="color: {{ $tag->color }}"><i class='bx bxs-bookmark-star'
                                         style="transform: scale(1.1)"></i>{{ Str::ucfirst($tag->name) }}</span>
                             @endforeach
-                            {{-- {{ $task->tags()->pluck('name')->join(', ')}} --}}
+                            
                         </td>
                         <td class="text-center">
                             <x-secondary-button title="Resumen" wire:click="detailTask({{ $task->id }})">

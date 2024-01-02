@@ -8,7 +8,7 @@
 
 
         <div class="flex gap-3 justify-between sm:justify-end w-full">
-        <div class="flex items-end">
+        <div class="flex max-w-28 sm:max-w-noned">
         <x-label for="etiquetas">Etiquetas:
         <x-select name="etiquetas" wire:model.live="tag" class="text-sm">
             <option value="">Todas</option>
@@ -16,9 +16,10 @@
                 <option value="{{$tag->id}}">{{Str::ucfirst($tag->name)}}</option>
             @endforeach
         </x-select>
-        </div>
-        <div class="flex">
         </x-label>
+        </div>
+        <div class="flex justify-end max-w-28 sm:max-w-none">
+        
         <x-label for="fecha">Mostrar primero:
             <x-select name="fecha" wire:change="$set('tag','')" wire:model="ordenar" id="" class="text-sm">
                 <option value="asc">Más antigua</option>
@@ -34,9 +35,10 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                 <tr>
                     <th scope="col" class="p-4">
-                        Completada
-                    </th>
-                    <th scope="col" class="px-6 py-3">
+                        <span class="hidden sm:block">Completada</span>
+                        <span class="block sm:hidden"><i class=' text-indigo-600 bx bxs-check-square border border-indigo-600 rounded' style="font-size:24px;"></i></span>
+                   </th>
+                    <th scope="col" class="px-2 sm:px-6 py-3">
                         Nombre 
                     </th>
                     <th scope="col" class="px-6 py-3 hidden sm:inline-block">
@@ -67,8 +69,9 @@
                             <button wire:click="completedTask({{$task->id}})" class="text-indigo-600 flex justify-center items-center bg-slate-100 border border-gray-400 rounded hover:outline-none hover:ring-2 hover:ring-indigo-500 hover:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 active:text-transparent " style="width: 20px; height: 20px;"><i class=' bx bxs-check-square' style="font-size: 22px"></i></button>
                         </div>
                     </td>
-                    <th  id="nameTask" scope="row" class="line-through px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                        {{$task->name}}
+                    <th  id="nameTask" scope="row" 
+                    class="line-through px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                    <span class="max-w-36 inline-block sm:max-w-md truncate" wire:click="detailTask({{ $task->id }})"">{{ $task->name }}</span>
                     </th>
                     <td class="px-6 py-4 hidden sm:inline-block" >
                         @foreach ($task->tags as $tag)
