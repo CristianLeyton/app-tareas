@@ -15,7 +15,9 @@ class Etiquetas extends Component
     use WithPagination;
 
     public TagCreateForm $tagCreate;
+    
     public TagEditForm $tagEdit;
+    public $openEdit = false;
 
     public $destroyOpen = false;
     public $tagIdDestroy;
@@ -33,12 +35,12 @@ class Etiquetas extends Component
     public function updateTag()
     {
         $this->tagEdit->update();
+        $this->reset('openEdit');
     }
 
     //Confirmar para eliminar una tarea de la BD
     public function confirmDestroy($tagId)
     {
-        $this->destroyOpen = true;
         $this->tagIdDestroy = $tagId;
     }
 

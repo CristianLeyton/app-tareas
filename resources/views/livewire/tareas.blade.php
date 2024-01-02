@@ -37,8 +37,14 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                 <tr>
                     <th scope="col" class="p-4">
-                        <span class="hidden sm:block">Completada</span>
-                        <span class="block sm:hidden"><i class=' text-indigo-600 bx bxs-check-square border border-indigo-600 rounded' style="font-size:24px;"></i></span>
+                        <span class="hidden sm:block text-center">
+                            Completada 
+                            <i wire:loading wire:target="completedTask" class='text-indigo-600 bx bx-loader-circle bx-spin ml-1 mt-1' style="font-size: 20px"></i></i>
+                        </span>
+                        <span class="block sm:hidden">
+                            <i class=' text-indigo-600 bx bxs-check-square border border-indigo-600 rounded' style="font-size:24px;"></i>
+                            <i wire:loading wire:target="completedTask" class='text-indigo-600 bx bx-loader-circle bx-spin ml-1 mt-1' style="font-size: 20px"></i></i>
+                        </span>
                     </th>
                     <th scope="col" class="px-2 sm:px-6 py-3">
                         Nombre
@@ -70,12 +76,15 @@
                                 <button wire:click="completedTask({{ $task->id }})"
                                     class="text-transparent flex justify-center items-center bg-slate-100 border border-gray-400 rounded hover:outline-none hover:ring-2 hover:ring-indigo-500 hover:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 active:text-indigo-600 "
                                     style="width: 20px; height: 20px;"><i class=' bx bxs-check-square'
-                                        style="font-size: 22px"></i></button>
+                                        style="font-size: 22px"></i>
+                                </button>
                             </div>
                         </td>
                         <th id="nameTask"  scope="row"
-                            class=" px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                            <span class="max-w-36 inline-block sm:max-w-md truncate" wire:click="detailTask({{ $task->id }})"">{{ $task->name }}</span>
+                            class=" px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <span class="max-w-36 inline-block sm:max-w-md truncate" wire:click="detailTask({{ $task->id }})">
+                                <p wire:click="$set('openDetail', true)">{{ $task->name }}</p>
+                            </span>
                         </th>
                         <td class="nowrap px-6 py-4 hidden sm:inline-block">
 
@@ -86,18 +95,24 @@
                             
                         </td>
                         <td class="text-center">
+                            <span wire:click="$set('openDetail', true)">
                             <x-secondary-button title="Resumen" wire:click="detailTask({{ $task->id }})">
                                 <box-icon type="" name="detail" color="gray" size="xs"
                                     style="transform: scale(1.4)"></box-icon>
                             </x-secondary-button>
+                            </span>
+                            <span wire:click="$set('openEdit', true)">
                             <x-button title="Editar" wire:click="editTask({{ $task->id }})">
                                 <box-icon type="solid" name="edit" color="white" size="xs"
                                     style="transform: scale(1.4)"></box-icon>
                             </x-button>
+                            </span>
+                            <span wire:click="$set('destroyOpen', true)">
                             <x-danger-button title="Eliminar" wire:click="confirmDestroy({{ $task->id }})">
                                 <box-icon type="solid" name="trash" color="white" size="xs"
                                     style="transform: scale(1.4)"></box-icon>
                             </x-danger-button>
+                        </span>
                         </td>
                     </tr>
                 @endforeach
@@ -126,16 +141,23 @@
 
     <x-confirmation-modal wire:model="destroyOpen">
         <x-slot name="title">
+            <div class="text-red-600" wire:loading wire:target="destroyTask"> 
+                <p class="opacity-70 text-sm">Eliminando... <i class='bx bx-loader-circle bx-spin' style="font-size: 18px"></i></i> </p>
+            </div>
             <p class="text-red-600"> ¿Eliminar tarea? </p>
         </x-slot>
         <x-slot name="content">
             ¿Estás seguro? ¡Esta acción no se puede revertir!
         </x-slot>
-
         <x-slot name="footer">
             <div class="flex gap-3">
+                <div class="text-red-600 text-center" wire:loading wire:target="confirmDestroy"> 
+                    <i class='bx bx-loader-circle bx-spin' style="font-size: 18px"></i></i>
+                </div>
+                <div wire:loading.class="hidden" wire:target="confirmDestroy">
                 <x-danger-button wire:click="destroyTask"> Eliminar </x-danger-button>
                 <x-secondary-button wire:click="$set('destroyOpen',false)">Cancelar</x-secondary-button>
+                </div>
             </div>
         </x-slot>
     </x-confirmation-modal>

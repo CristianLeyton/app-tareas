@@ -9,7 +9,6 @@ use Livewire\Form;
 
 class TaskEditForm extends Form
 {
-    public $open = false;
     public $task, $taskEditId;
     public $repeat_id;
     #[Rule('required|min:3',as: 'nombre')]
@@ -20,7 +19,6 @@ class TaskEditForm extends Form
 
 
     public function edit($taskId) {
-        $this->open = true;
         $this->taskEditId = $taskId;
         $task = Task::find($taskId);
         $this->taskName = $task->name;

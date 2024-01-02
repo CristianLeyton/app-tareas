@@ -47,15 +47,18 @@
                                         style="transform: scale(1.4)"></box-icon>
                                 </x-danger-button>
                             @else
+                            <span wire:click="$set('openEdit', true)">
                                 <x-button title="Editar" wire:click="editTag({{ $tag->id }})">
                                     <box-icon type="solid" name="edit" color="white" size="xs"
                                         style="transform: scale(1.4)"></box-icon>
                                 </x-button>
-
+                            </span>
+                            <span wire:click="$set('destroyOpen', true)">
                                 <x-danger-button title="Eliminar" wire:click="confirmDestroy({{ $tag->id }})">
                                     <box-icon type="solid" name="trash" color="white" size="xs"
                                         style="transform: scale(1.4)"></box-icon>
                                 </x-danger-button>
+                            </span>
                             @endif
                         </td>
                     </tr>
@@ -76,6 +79,9 @@
 
     <x-confirmation-modal wire:model="destroyOpen">
         <x-slot name="title">
+            <div class="text-red-600" wire:loading wire:target="destroyTag"> 
+                <p class="opacity-70 text-sm">Eliminando... <i class='bx bx-loader-circle bx-spin' style="font-size: 18px"></i></i> </p>
+            </div>
             <p class="text-red-600"> ¿Eliminar etiqueta? </p>
         </x-slot>
         <x-slot name="content">
@@ -85,8 +91,13 @@
 
         <x-slot name="footer">
             <div class="flex gap-3">
+                <div class="text-red-600 text-center" wire:loading wire:target="confirmDestroy"> 
+                    <i class='bx bx-loader-circle bx-spin' style="font-size: 18px"></i></i>
+                </div>
+                <div wire:loading.class="hidden" wire:target="confirmDestroy">
                 <x-danger-button wire:click="destroyTag"> Eliminar </x-danger-button>
                 <x-secondary-button wire:click="$set('destroyOpen',false)">Cancelar</x-secondary-button>
+                </div>
             </div>
         </x-slot>
     </x-confirmation-modal>

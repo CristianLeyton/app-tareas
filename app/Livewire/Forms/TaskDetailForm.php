@@ -9,7 +9,6 @@ use Livewire\Form;
 
 class TaskDetailForm extends Form
 {
-    public $open = false;
     public $task;
     public $repeat_id;
     public $taskName; 
@@ -19,7 +18,6 @@ class TaskDetailForm extends Form
     public $taskCompleted_at; 
 
     public function detail($taskId) {
-        $this->open = true;
         $task = Task::find($taskId);
         $this->taskName = $task->name;
         $this->taskContent = $task->content;

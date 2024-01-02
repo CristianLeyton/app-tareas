@@ -1,7 +1,12 @@
 <form wire:submit="saveTag">
     <x-dialog-modal wire:model="tagCreate.open">
         <x-slot name="title">
+            <div class="flex justify-between">
             <p class="text-indigo-600 font-bold">Nueva etiqueta:</p>
+            <div class="text-indigo-600" wire:loading wire:target="saveTag"> 
+                <p class="opacity-70 text-sm">Guardando... <i class='bx bx-loader-circle bx-spin' style="font-size: 18px"></i></i> </p>
+            </div>
+        </div>
         </x-slot>  
         <x-slot name="content">
 

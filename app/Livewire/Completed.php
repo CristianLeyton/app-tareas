@@ -20,10 +20,10 @@ class Completed extends Component
 
     //En este archivo, esta todo lo necesario para editar una tarea nueva:
     public TaskEditForm $taskEdit;
-
+    public $openEdit = false;
     //En este archivo, esta todo lo necesario para ver los detalles de una tarea:
     public TaskDetailForm $taskDetail;
-
+    public $openDetail = false;
     //Variables para eliminar una tarea
     public $destroyOpen = false; //Abre el modal de confirmacion
     public $taskIdDestroy; //Guarda la ID de la tarea a eliminar
@@ -58,20 +58,19 @@ class Completed extends Component
 
     public function detailTask($taskId)
     {
-        $this->taskDetail->open = true;
         $this->taskDetail->detail($taskId);
     }
 
-    public function editTask($taskId)
+/*     public function editTask($taskId)
     {
         $this->resetValidation();
         $this->taskEdit->edit($taskId);
-    }
+    } */
 
-    public function updateTask()
+/*     public function updateTask()
     {
         $this->taskEdit->update();
-    }
+    } */
 
     //Confirmar para eliminar una tarea de la BD
     public function confirmDestroy($taskId)
@@ -106,8 +105,6 @@ class Completed extends Component
             'completed_at' => $date
         ]);
     }
-
-
 
 
     //Renderiza la vista

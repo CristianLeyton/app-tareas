@@ -9,7 +9,6 @@ use Livewire\Form;
 
 class TagEditForm extends Form
 {
-    public $open = false;
     public $tagEditId;
     #[Rule('required|min:3',as: 'nombre')]
     public $tagName; 
@@ -18,7 +17,6 @@ class TagEditForm extends Form
 
 
     public function edit($tagId){
-        $this->open = true;
         $this->tagEditId = $tagId;
         $tag = Tag::find($tagId);
         $this->tagName = $tag->name;

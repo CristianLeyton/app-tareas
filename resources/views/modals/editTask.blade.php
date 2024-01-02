@@ -1,9 +1,18 @@
 <form wire:submit="updateTask">
-    <x-dialog-modal wire:model="taskEdit.open">
-        <x-slot name="title">
+    <x-dialog-modal wire:model="openEdit">
+        <x-slot  name="title">
+            <div class="flex justify-between">
             <p class="text-indigo-600 font-bold"> Editar tarea:</p>
+            <div class="text-indigo-600" wire:loading wire:target="updateTask"> 
+                <p class="opacity-70 text-sm">Guardando... <i class='bx bx-loader-circle bx-spin' style="font-size: 18px"></i></i> </p>
+            </div>
+        </div>
         </x-slot>  
         <x-slot name="content">
+            <div class="text-indigo-600 w-full block text-center" wire:loading wire:target="editTask"> 
+                <i class='bx bx-loader-circle bx-spin' style="font-size: 48px"></i></i>
+            </div>
+            <span class="" wire:loading.class="hidden" wire:target="editTask">
                 <div class="mb-4">
                     <x-label for="">
                         Nombre:
@@ -52,16 +61,18 @@
                     </ul>
                     <x-input-error for=""/>
                 </div>
+            </span>
         </x-slot> 
         <x-slot name="footer">
             <div class="flex justify-end gap-2">
-                <x-secondary-button wire:click="$set('taskEdit.open',false)">
+                <x-secondary-button wire:click="$set('openEdit',false)">
                     Cancelar
                 </x-secondary-button>
                 <x-primary-button>
                     Actualizar
                 </x-primary-button>
             </div>
-        </x-slot>          
+        </x-slot> 
+                
     </x-dialog-modal>
 </form>
