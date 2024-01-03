@@ -82,8 +82,8 @@
                         </td>
                         <th id="nameTask"  scope="row"
                             class=" px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            <span class="max-w-36 inline-block sm:max-w-md truncate" wire:click="detailTask({{ $task->id }})">
-                                <p wire:click="$set('openDetail', true)">{{ $task->name }}</p>
+                            <span class="" wire:click="detailTask({{ $task->id }})">
+                                <p class="max-w-36 inline-block truncate sm:max-w-md" wire:click="$set('openDetail', true)">{{ $task->name }}</p>
                             </span>
                         </th>
                         <td class="nowrap px-6 py-4 hidden sm:inline-block">

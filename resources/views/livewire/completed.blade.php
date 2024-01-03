@@ -8,7 +8,7 @@
 
 
         <div class="flex gap-3 justify-between sm:justify-end w-full">
-        <div class="flex max-w-28 sm:max-w-noned">
+        <div class="flex max-w-28 sm:max-w-none">
         <x-label for="etiquetas">Etiquetas:
         <x-select name="etiquetas" wire:model.live="tag" class="text-sm">
             <option value="">Todas</option>
@@ -19,7 +19,6 @@
         </x-label>
         </div>
         <div class="flex justify-end max-w-28 sm:max-w-none">
-        
         <x-label for="fecha">Mostrar primero:
             <x-select name="fecha" wire:change="$set('tag','')" wire:model="ordenar" id="" class="text-sm">
                 <option value="asc">Más antigua</option>
