@@ -40,8 +40,10 @@ class Tareas extends Component
     //Aqui guardo el ID para filtrar por etiquetas
     public $tag = '';
     public $ordenar = '';
-
+    public $dateToday;
     public $null = NULL;
+
+
     //Inicializa las variables que necesito
     public function mount()
     {
@@ -51,6 +53,8 @@ class Tareas extends Component
             $query->where('user_id', $this->taskCreate->user_id)
                 ->orWhereNull('user_id');
         })->orderBy('name')->get();
+
+        /* $this->repeat();  */
     }
 
     //Guarda una tarea en la BD
@@ -58,6 +62,22 @@ class Tareas extends Component
     {
         $this->taskCreate->save();
     }
+
+/*     public function repeat() { //Esta funcion calcula si ya es tiempo de repetir una tarea o no
+        $this->dateToday = Carbon::now();
+        $allTasks = Task::where('user_id', $this->taskCreate->user_id)->where('completed', true)->with('repeats')->paginate(10);  
+        foreach ($allTasks as $task) {
+            if (date_diff($task->created_at, $this->dateToday)->format('%a') >= $task->repeats->days ) {
+                $task = Task::create([ //Creo la tarea
+                    'user_id' => $task->user_id,
+                    'repeat_id' => $task->repeat_id,
+                    'name' => $task->name,  
+                    'content' => $task->content,
+                ]);
+                $task->tags()->attach($task->tags);//Enlazo las etiquetas
+            }
+        }
+    } */
 
     public function detailTask($taskId)
     {
@@ -108,14 +128,18 @@ class Tareas extends Component
     public function render()
     {
 
-        $allTasks = Task::where('user_id', $this->taskCreate->user_id)->where('completed', false)->paginate(10);
-
+        $allTasks = Task::where('user_id', $this->taskCreate->user_id)->where('completed', false)->with('repeats')->paginate(10);
+         
         //Ordena las tareas por fecha de creacion
         if ($this->ordenar == 'desc') {
             $tasks = Task::where('tasks.user_id', $this->taskCreate->user_id)
                 ->where('tasks.completed', false)->orderBy('created_at', 'desc')
                 ->paginate(10);
-        } else {
+        } elseif ($this->ordenar == 'asc') {
+            $tasks = Task::where('tasks.user_id', $this->taskCreate->user_id)
+                ->where('tasks.completed', false)->orderBy('created_at', 'asc')
+                ->paginate(10);
+        } else  {
             //Solo trae las tareas con determinada etiqueta
             if ($this->tag) {
                 $tasks = Task::where('tasks.user_id', $this->taskCreate->user_id)

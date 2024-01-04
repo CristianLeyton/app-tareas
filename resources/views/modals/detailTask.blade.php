@@ -11,10 +11,14 @@
         </div>
         <span class="" wire:loading.class="hidden" wire:target="detailTask">
             <div class="border p-4 rounded bg-slate-100 text-gray-700">
-                <div class="flex justify-between mb-3">
+                <div class="flex justify-between mb-3 ">
                     @if ($taskDetail->taskCompleted_at)
-                        <p class= "text-indigo-600"><span class="font-bold">Completada:</span> <span
-                                class="">{{ $taskDetail->taskCompleted_at }}</span></p>
+                        <p class= "text-indigo-600 flex items-center">
+                            <i class='bx bxs-check-square mr-1' style="font-size: 24px"></i>
+                            <span class="font-bold mr-1">Completada:</span> <span
+                                class="">{{ $taskDetail->taskCompleted_at }}
+                            
+                            </span></p>
                     @endif
                     <p class= ""><span class="font-bold">Creada:</span> <span
                             class="">{{ $taskDetail->taskCreated_at }}</span></p>

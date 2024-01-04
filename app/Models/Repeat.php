@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Models;
 
@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Repeat extends Model
 {
     use HasFactory;
+
+    public function tasks(){
+        return $this->belongsTo(Task::class);
+    }
 }

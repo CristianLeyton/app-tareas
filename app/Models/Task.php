@@ -19,8 +19,8 @@ class Task extends Model
     ];
 
     //Relacion uno a muchos inversa
-    public function category(){
-        return $this->belongsTo(Repeat::class);
+    public function repeats(){
+        return $this->belongsTo(Repeat::class, 'repeat_id', 'id');
     }
 
     //Relacion muchos a muchos 
