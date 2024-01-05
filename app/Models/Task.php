@@ -15,7 +15,8 @@ class Task extends Model
         'completed',
         'completed_at',
         'repeat_id',
-        'user_id'
+        'user_id',
+        'expired'
     ];
 
     //Relacion uno a muchos inversa

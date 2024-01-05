@@ -30,7 +30,11 @@
     
                 <div class="mb-4">
                     <x-label>
-                        Repetir:
+                        <span class="flex justify-between">
+                            Repetir: 
+                            <i class='bx bx-info-circle text-indigo-600 mb-1 alerta' style="font-size: 20px"></i>                       
+                            <p class="info">Si completa la tarea, esta volvera a la lista de "pendientes" una vez pasado el tiempo indicado. <br> Si no la completa, aparecerá como "vencida".</p>
+                        </span>
                     </x-label>
                     <x-select class="w-full" wire:model="taskCreate.repeat_id">
                         @foreach ($repeats as $repeat)
@@ -39,7 +43,7 @@
                         </option>
                         @endforeach
                     </x-select>
-                    <x-input-error for=""/>
+                    <x-input-error for="taskCreate.repeat_id"/>
                 </div>
     
                 <div class="mb-4">

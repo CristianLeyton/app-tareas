@@ -70,7 +70,7 @@
                 @endif
 
                 @foreach ($tasks as $task)
-                    <tr id="task" class="bg-white border-b hover:bg-gray-50  ">
+                    <tr id="task" class="bg-white border-b hover:bg-gray-50" wire:key="task{{$task->id}}">
                         <td class="w-4 p-4">
                             <div class="flex items-center justify-center active:shadow-indigo-600">
                                 <button wire:click="completedTask({{ $task->id }})"
@@ -83,12 +83,14 @@
                         <th id="nameTask"  scope="row"
                             class="px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             <span class="" wire:click="detailTask({{ $task->id }})">
-                                <p class="max-w-36 sm:max-w-36 md:max-w-80 inline-block truncate" wire:click="$set('openDetail', true)">{{ $task->name }}</p>
-                            </span>
-                            
-                            {{-- @if ($task->repeat_id)
-                                {{$task->repeats->days}}
-                            @endif --}}
+                                <p class="max-w-36 sm:max-w-36 md:max-w-80 inline-block truncate {{$task->expired ? 'text-orange-600' : ''}} " wire:click="$set('openDetail', true)">
+                                    @if ($task->expired)
+                                        <i class='bx bx-calendar-exclamation text-orange-600' title="¡Tarea vencida!" style="font-size: 22px"></i>
+                                    @endif    
+                                    {{ $task->name }}
+                                </p>
+                                
+                            </span> 
                         </th>
                         <td class="nowrap px-6 py-4 hidden lg:inline-block">
 

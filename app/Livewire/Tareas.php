@@ -63,21 +63,6 @@ class Tareas extends Component
         $this->taskCreate->save();
     }
 
-/*     public function repeat() { //Esta funcion calcula si ya es tiempo de repetir una tarea o no
-        $this->dateToday = Carbon::now();
-        $allTasks = Task::where('user_id', $this->taskCreate->user_id)->where('completed', true)->with('repeats')->paginate(10);  
-        foreach ($allTasks as $task) {
-            if (date_diff($task->created_at, $this->dateToday)->format('%a') >= $task->repeats->days ) {
-                $task = Task::create([ //Creo la tarea
-                    'user_id' => $task->user_id,
-                    'repeat_id' => $task->repeat_id,
-                    'name' => $task->name,  
-                    'content' => $task->content,
-                ]);
-                $task->tags()->attach($task->tags);//Enlazo las etiquetas
-            }
-        }
-    } */
 
     public function detailTask($taskId)
     {
