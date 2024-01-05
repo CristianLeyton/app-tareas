@@ -36,3 +36,8 @@ Route::middleware([
         return view('etiquetas');
     })->name('etiquetas');
 });
+
+
+Route::get('/offline', function () {    
+    return view('modules/laravelpwa/offline');
+});
