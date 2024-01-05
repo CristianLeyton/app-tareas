@@ -22,13 +22,13 @@ class TaskCreateForm extends Form
 
     public function save() {
         $this->validate();//Ejecuto las validaciones
-        $post = Task::create([ //Creo la tarea
+        $task = Task::create([ //Creo la tarea
             'user_id' => $this->user_id,
             'repeat_id' => $this->repeat_id,
             'name' => $this->taskName,  // Asumo que $taskName es la variable correcta aquí
             'content' => $this->taskContent,
         ]);
-        $post->tags()->attach($this->taskTags);//Enlazo las etiquetas
+        $task->tags()->attach($this->taskTags);//Enlazo las etiquetas
         // Resetea las propiedades indicadas
         $this->reset(['repeat_id', 'taskName', 'taskContent', 'taskTags','open']);
     }

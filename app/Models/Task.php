@@ -15,12 +15,13 @@ class Task extends Model
         'completed',
         'completed_at',
         'repeat_id',
-        'user_id'
+        'user_id',
+        'expired'
     ];
 
     //Relacion uno a muchos inversa
-    public function category(){
-        return $this->belongsTo(Repeat::class);
+    public function repeats(){
+        return $this->belongsTo(Repeat::class, 'repeat_id', 'id');
     }
 
     //Relacion muchos a muchos 

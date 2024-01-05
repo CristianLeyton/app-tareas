@@ -11,7 +11,7 @@
         <div class="flex gap-3 justify-between sm:justify-end w-full">
             <div class="flex max-w-28 sm:max-w-none">
                 <x-label for="etiquetas">Etiquetas:
-                    <x-select name="etiquetas" wire:model.live="tag" class="text-sm">
+                    <x-select name="etiquetas" wire:change="$set('ordenar','')" wire:model.live="tag" class="text-sm">
                         <option value="">Todas</option>
                         @foreach ($tags as $tag)
                             <option value="{{ $tag->id }}">{{ Str::ucfirst($tag->name) }}</option>
@@ -49,7 +49,7 @@
                     <th scope="col" class="px-2 sm:px-6 py-3">
                         Nombre
                     </th>
-                    <th scope="col" class="px-6 py-3 hidden sm:inline-block">
+                    <th scope="col" class="px-6 py-3 hidden lg:inline-block">
                         Etiquetas
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
@@ -70,7 +70,7 @@
                 @endif
 
                 @foreach ($tasks as $task)
-                    <tr id="task" class="bg-white border-b hover:bg-gray-50  ">
+                    <tr id="task" class="bg-white border-b hover:bg-gray-50" wire:key="task{{$task->id}}">
                         <td class="w-4 p-4">
                             <div class="flex items-center justify-center active:shadow-indigo-600">
                                 <button wire:click="completedTask({{ $task->id }})"
@@ -81,12 +81,18 @@
                             </div>
                         </td>
                         <th id="nameTask"  scope="row"
-                            class=" px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            class="px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             <span class="" wire:click="detailTask({{ $task->id }})">
-                                <p class="max-w-36 inline-block truncate sm:max-w-md" wire:click="$set('openDetail', true)">{{ $task->name }}</p>
-                            </span>
+                                <p class="max-w-36 sm:max-w-36 md:max-w-80 inline-block truncate {{$task->expired ? 'text-orange-600' : ''}} " wire:click="$set('openDetail', true)">
+                                    @if ($task->expired)
+                                        <i class='bx bx-calendar-exclamation text-orange-600' title="¡Tarea vencida!" style="font-size: 22px"></i>
+                                    @endif    
+                                    {{ $task->name }}
+                                </p>
+                                
+                            </span> 
                         </th>
-                        <td class="nowrap px-6 py-4 hidden sm:inline-block">
+                        <td class="nowrap px-6 py-4 hidden lg:inline-block">
 
                             @foreach ($task->tags as $tag)
                                 <span class="" style="color: {{ $tag->color }}"><i class='bx bxs-bookmark-star'
@@ -94,7 +100,7 @@
                             @endforeach
                             
                         </td>
-                        <td class="text-center">
+                        <td class="text-center min-w-36">
                             <span wire:click="$set('openDetail', true)">
                             <x-secondary-button title="Resumen" wire:click="detailTask({{ $task->id }})">
                                 <box-icon type="" name="detail" color="gray" size="xs"
