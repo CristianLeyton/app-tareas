@@ -21,7 +21,8 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/', function () {
-        return redirect()->route('inicio');
+        //return redirect()->route('inicio');
+        return view('dashboard');
     });
 
     Route::get('/inicio', function () {
