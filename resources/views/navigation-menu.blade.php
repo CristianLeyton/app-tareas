@@ -13,13 +13,13 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('inicio') }}" :active="request()->routeIs('inicio')">
-                        {{ "Tareas" }}
+                        <span class="mr-2 pt-1">Pendientes</span> <i class='bx bx-notepad text-lg'></i> 
                     </x-nav-link>
                     <x-nav-link href="{{ url('completadas') }}" :active="request()->routeIs('completadas')">
-                        {{ "Completadas" }}
+                        <span class="mr-2 pt-1">Completadas</span> <i class='bx bx-calendar-check text-lg'></i>
                     </x-nav-link>
                     <x-nav-link href="{{ url('etiquetas') }}" :active="request()->routeIs('etiquetas')">
-                        {{ "Etiquetas" }}
+                        <span class="mr-2 pt-1">Etiquetas</span> <i class='bx bxs-bookmarks text-lg'></i>
                     </x-nav-link>
                 </div>
             </div>
@@ -143,8 +143,8 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'active-nav': open, 'collapse': ! open}" class="sm:collapse menu-nav">
-        <div class="pt-2 pb-3 space-y-1">
+     <div :class="{'active-nav': open, 'collapse': ! open}" class="sm:collapse menu-nav">
+     {{--   <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('inicio') }}" :active="request()->routeIs('inicio')">
                 {{ "Tareas" }}
             </x-responsive-nav-link>
@@ -154,7 +154,7 @@
             <x-responsive-nav-link href="{{ url('etiquetas') }}" :active="request()->routeIs('etiquetas')">
                 {{ "Etiquetas" }}
             </x-responsive-nav-link>
-        </div>
+        </div> --}}
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

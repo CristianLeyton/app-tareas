@@ -28,9 +28,29 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+
+                    <div class="max-w-7xl mx-auto py-2 sm:py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center">
+                        <div name="Titulo"> {{ $header }} </div>
+                        <div>
+                        <div class="sm:hidden flex">
+                            <div class="flex gap-2">
+                                <x-responsive-nav-item href="{{ route('inicio') }}" :active="request()->routeIs('inicio')">
+                                    <i class='bx bx-notepad text-lg'></i>
+                                </x-responsive-nav-item>
+                                <x-responsive-nav-item href="{{ url('completadas') }}" :active="request()->routeIs('completadas')">
+                                    <i class='bx bx-calendar-check text-lg'></i>
+                                </x-responsive-nav-item>
+                                <x-responsive-nav-item href="{{ url('etiquetas') }}" :active="request()->routeIs('etiquetas')">
+                                    <i class='bx bxs-bookmarks text-lg'></i>
+                                </x-responsive-nav-item>
+                            </div> 
+                        </div>
+                        </div>
+                    </div> 
+
                     </div>
+                    
                 </header>
             @endif
 
