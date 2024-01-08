@@ -50,18 +50,17 @@
                     <x-label>
                         Etiquetas:
                     </x-label>
-                    <ul class="w-full flex justify-between">
-                        
-                        <li>
+                    <div class="grid gap-2 grid-cols-3 sm:grid-cols-4">
                             @foreach ($tags as $tag)
-                            <label class="">
+                        <label wire.key="tag{{$tag->id}}"  class="flex gap-1 items-center border py-1 px-2 rounded" >
                             <x-checkbox wire:model="taskCreate.taskTags" value="{{$tag->id}}"/>
-                            <span class="mr-2" style="color: {{$tag->color}}">{{Str::ucfirst($tag->name)}}<i class='bx bxs-bookmark-star' style="transform: scale(1.1)"></i></span>
-                            </label> 
-                            @endforeach
-                        </li>
-                        
-                    </ul>
+                            <div class="flex justify-between items-center w-full">
+                            <span class="mr-2" style="color: {{$tag->color}}">{{Str::ucfirst($tag->name)}}</span>
+                            <i class='bx bxs-bookmark-star' style="transform: scale(1.4); color: {{$tag->color}};"></i>
+                            </div>
+                        </label> 
+                            @endforeach      
+                    </div>      
                     <x-input-error for=""/>
                 </div>
         </x-slot> 
