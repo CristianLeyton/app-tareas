@@ -1,4 +1,4 @@
-<form wire:submit="saveTask">
+<form wire:submit="saveTask" class="">
     <x-dialog-modal wire:model="taskCreate.open">
         <x-slot name="title">
             <div class="flex justify-between">
@@ -9,8 +9,6 @@
             </div>
         </x-slot>  
         <x-slot name="content">
-
-            
 
                 <div class="mb-4">
                     <x-label for="">
