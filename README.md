@@ -11,6 +11,9 @@ Esta hecha en Laravel usando Livewire, con una base de datos MySQL, traté de ha
 - Ordenar tareas.
 - Repetición de tareas. (Puede marcar una tarea, como "diaria" por ejemplo, y aunque se complete en el dia, aparece al proximo. Lo malo es que necesito un server pago para hacer funcionar el CRON JOB de laravel)
 
+![image](https://github.com/user-attachments/assets/4d1d906a-df22-496e-8689-9a0539fe4eb1)
+
+
 Acceder al sitio: 
 https://cdl.free.nf/
 
