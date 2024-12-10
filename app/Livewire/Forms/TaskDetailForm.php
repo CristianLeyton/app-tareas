@@ -3,6 +3,7 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Task;
+use App\Models\Tag;
 use Carbon\Carbon;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -16,9 +17,14 @@ class TaskDetailForm extends Form
     public $taskTags = [];
     public $taskCreated_at; 
     public $taskCompleted_at; 
+    public $allTags;
 
     public function detail($taskId) {
         $task = Task::find($taskId);
+        $allTags = Tag::whereNull('user_id')
+        ->orWhere('user_id', $task->user_id)
+        ->get();
+        $this->allTags = $allTags;
         $this->taskName = $task->name;
         $this->taskContent = $task->content;
         $this->repeat_id = $task->repeat_id;

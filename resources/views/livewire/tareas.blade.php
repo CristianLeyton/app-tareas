@@ -82,12 +82,15 @@
                         </td>
                         <th id="nameTask"  scope="row"
                             class="px-2 sm:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            <span class="" wire:click="detailTask({{ $task->id }})">
-                                <p class="max-w-36 sm:max-w-36 md:max-w-80 inline-block truncate {{$task->expired ? 'text-orange-600' : ''}} " wire:click="$set('openDetail', true)">
+                            <span class="inline-flex" wire:click="detailTask({{ $task->id }})">
+                                <p class="max-w-36 sm:max-w-36 md:max-w-80 inline-flex items-end gap-1 truncate {{$task->expired ? 'text-orange-600' : ''}} " wire:click="$set('openDetail', true)">
                                     @if ($task->expired)
-                                        <i class='bx bx-calendar-exclamation text-orange-600' title="¡Tarea vencida!" style="font-size: 22px"></i>
+                                        <i class='inline-block bx bx-calendar-exclamation text-orange-600' title="¡Tarea vencida!" style="font-size: 22px"></i>
                                     @endif    
+
+                                    <span class="inline-block">
                                     {{ $task->name }}
+                                    </span>
                                 </p>
                                 
                             </span> 

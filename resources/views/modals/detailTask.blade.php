@@ -31,18 +31,21 @@
                     <div class="mb-3 h-auto">
                         <span class="text-indigo-500">Detalles:</span> {{ $taskDetail->taskContent }}
                     </div>
+
+
                     @if ($taskDetail->taskTags)
                         <div class="mb-3">
                             <span class="text-indigo-500">Etiquetas:</span>
-                            @foreach ($task->tags as $tag)
-                                @foreach ($taskDetail->taskTags as $taskTag)
-                                    <?php
-                                    if ($tag['id'] == $taskTag) {
-                                        echo '<span class="" style="color:' . $tag->color . '"><i class="bx bxs-bookmark-star" style="transform: scale(1.1)"></i>' . ucfirst($tag->name) . '</span>';
-                                    }
-                                    ?>
-                                @endforeach
-                            @endforeach
+                            @foreach ($taskDetail->allTags as $tag)
+                             @foreach ($taskDetail->taskTags as $taskTag)
+                                @if ($tag['id'] == $taskTag)
+                                    <span style="color: {{ $tag->color }}">
+                                        <i class="bx bxs-bookmark-star" style="transform: scale(1.1)"></i>
+                                        {{ ucfirst($tag->name) }}
+                                    </span>
+                                @endif
+                            @endforeach 
+                        @endforeach
                         </div>
                     @else
                         <p class="mb-3">La tarea <span class='font-bold'>no tiene etiquetas asociadas.</span></p>
