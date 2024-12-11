@@ -15,7 +15,7 @@ Esta hecha en Laravel usando Livewire, con una base de datos MySQL, traté de ha
 
 
 Acceder al sitio: 
-https://cdl.free.nf/
+https://tareas.cdl.com.ar/
 
 > Usuario: test@mail.com
 
