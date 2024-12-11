@@ -45,7 +45,7 @@ class RepeatTasks extends Command
         foreach ($incompletedTasks as $task) {
             $diff = date_diff($task->created_at, $today)->format('%a');
             if ($task->repeats->days != 0 && $diff >= $task->repeats->days ) {
-                $task->update([ //Quito la marca de tarea completada
+                $task->update([ 
                     'expired' => true
                 ]);
             }

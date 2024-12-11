@@ -104,7 +104,8 @@ class Tareas extends Component
         $completed = !$task->completed;
         $task->update([
             'completed' => $completed,
-            'completed_at' => $date
+            'completed_at' => $date,
+            'expired' => false
         ]);
     }
 
