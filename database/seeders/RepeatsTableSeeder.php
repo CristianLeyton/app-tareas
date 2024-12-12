@@ -27,6 +27,12 @@ class RepeatsTableSeeder extends Seeder
             'name' => 'semanalmente',
             'days' => 7
         ]);
+
+        Repeat::create([
+            'name' => 'mensualmente',
+            'days' => 30
+        ]);
+
         Repeat::create([
             'name' => 'anualmente',
             'days' => 365

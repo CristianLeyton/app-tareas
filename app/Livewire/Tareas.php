@@ -105,7 +105,7 @@ class Tareas extends Component
         $task->update([
             'completed' => $completed,
             'completed_at' => $date,
-            'expired' => false
+           /*  'expired' => false */ //Esto se actualiza con el cronjob repeat-tassks
         ]);
     }
 

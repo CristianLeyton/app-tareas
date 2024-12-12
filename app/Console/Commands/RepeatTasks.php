@@ -36,6 +36,7 @@ class RepeatTasks extends Command
             if ($task->repeats->days != 0 && $diff >= $task->repeats->days ) {
                 $task->update([ //Quito la marca de tarea completada
                     'completed' => false,
+                    'created_at' => $today,
                     'completed_at' => NULL,
                     'expired' => false
                 ]);
