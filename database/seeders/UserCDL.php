@@ -17,7 +17,7 @@ class UserCDL extends Seeder
         User::create([
             'name' => 'Cristian Leyton',
             'email' => 'clippyt@gmail.com',
-            'password' => Hash::make('Leyton520'),
+            'password' => Hash::make('taringa1'),
             'profile_photo_path' => 'profile-photos/YhfNqi7moVGcBqrIzKDhq50sTttaDN6evD25dcRK.jpg'
         ]);
     }
